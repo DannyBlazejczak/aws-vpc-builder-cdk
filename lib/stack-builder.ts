@@ -281,12 +281,14 @@ export class StackBuilderClass {
     const endpointFilePrefix = configStanza.endpointConfigFile
       ? configStanza.endpointConfigFile
       : "endpointlist";
+    // DBLA: I want to read this file from the workdir, not from the local source dir
+    const configDir = this.configParser.props.configFilename ? path.dirname(this.configParser.props.configFilename) : "config";
     const interfaceListRaw: Array<string> = fs
         .readFileSync(
             path.join(
                 // DBLA: I want to read this file from the workdir, not from the local source dir
                 // "config",
-                path.dirname(this.configParser.props.configFilename),
+                configDir,
                 `${endpointFilePrefix}-${this.c.global.region}.txt`
             ),
             { encoding: "utf8" }

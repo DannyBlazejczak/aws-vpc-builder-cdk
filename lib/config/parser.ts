@@ -210,7 +210,8 @@ export class ConfigParser {
     const interfaceListFile = `${configStanza.endpointConfigFile}-${this.configRaw.global.region}.txt`;
     // DBLA: I want to read this file from the workdir, not from the local source dir
     // if (!fs.existsSync(path.join("config", interfaceListFile))) {
-    if (!fs.existsSync(path.join(path.dirname(this.props.configFilename), interfaceListFile))) {
+    const configDir = this.props.configFilename ? path.dirname(this.props.configFilename) : "config";
+    if (!fs.existsSync(path.join(configDir, interfaceListFile))) {
       throw new Error(`Endpoint ${providerName}: Service interface file ${interfaceListFile} not found in the config directory`);
     }
     if (configStanza.endpointMask) {
