@@ -284,7 +284,9 @@ export class StackBuilderClass {
     const interfaceListRaw: Array<string> = fs
         .readFileSync(
             path.join(
-                "config",
+                // DBLA: I want to read this file from the workdir, not from the local source dir
+                // "config",
+                path.dirname(this.configParser.props.configFilename),
                 `${endpointFilePrefix}-${this.c.global.region}.txt`
             ),
             { encoding: "utf8" }
