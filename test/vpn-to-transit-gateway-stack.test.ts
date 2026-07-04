@@ -47,10 +47,10 @@ test("BaseWithNewCustomerGateway", () => {
     });
     // We expect SSM Exports that our stacks above can consume:
     template.hasResourceProperties("AWS::SSM::Parameter", {
-      Name: "/ssm/prefix/networking/globalprefix/vpns/test-vpn/tgwRouteId",
+      Name: "/ssm/prefix/networking/vpns/test-vpn/tgwRouteId",
     });
     template.hasResourceProperties("AWS::SSM::Parameter", {
-      Name: "/ssm/prefix/networking/globalprefix/vpns/test-vpn/tgwAttachId",
+      Name: "/ssm/prefix/networking/vpns/test-vpn/tgwAttachId",
     });
   }
 });
@@ -119,11 +119,11 @@ test("BaseWithImport", () => {
     expect(vpnStack.vpn.ref).toEqual("vpn-1234");
     // We expect SSM Exports that our stacks above can consume:
     template.hasResourceProperties("AWS::SSM::Parameter", {
-      Name: "/ssm/prefix/networking/globalprefix/vpns/test-vpn/tgwRouteId",
+      Name: "/ssm/prefix/networking/vpns/test-vpn/tgwRouteId",
       Value: "tgw-rtb-12313",
     });
     template.hasResourceProperties("AWS::SSM::Parameter", {
-      Name: "/ssm/prefix/networking/globalprefix/vpns/test-vpn/tgwAttachId",
+      Name: "/ssm/prefix/networking/vpns/test-vpn/tgwAttachId",
       Value: "tgw-attach-1234",
     });
   }

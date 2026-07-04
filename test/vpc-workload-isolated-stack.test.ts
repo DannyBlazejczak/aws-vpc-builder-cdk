@@ -97,13 +97,13 @@ test("WorkloadIsolatedBase", () => {
 
     // We expect SSM named exports within our construct are prepared with Transit Route Table, and Association.
     expect(workloadIsolated.tgwAttachmentSsm.name).toEqual(
-      "/ssm/prefix/networking/globalprefix/vpcs/test-vpc-workload/tgwId"
+      "/ssm/prefix/networking/vpcs/test-vpc-workload/tgwId"
     );
     expect(workloadIsolated.tgwRouteTableSsm.name).toEqual(
-      "/ssm/prefix/networking/globalprefix/vpcs/test-vpc-workload/tgwRouteId"
+      "/ssm/prefix/networking/vpcs/test-vpc-workload/tgwRouteId"
     );
 
-    const prefix = "/ssm/prefix/networking/globalprefix";
+    const prefix = "/ssm/prefix/networking";
     for (const parameterName of [
       `${prefix}/vpcs/test-vpc-workload/vpcId`,
       `${prefix}/vpcs/test-vpc-workload/vpcCidr`,

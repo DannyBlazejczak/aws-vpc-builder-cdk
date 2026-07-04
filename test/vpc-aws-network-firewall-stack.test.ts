@@ -49,13 +49,13 @@ test("NetworkFirewallBase", () => {
 
     // We expect SSM named exports within our construct are prepared with Transit Route Table, and Association.
     expect(awsFirewall.tgwAttachmentSsm.name).toEqual(
-      "/ssm/prefix/networking/globalprefix/vpcs/test-provider-firewall/tgwId"
+      "/ssm/prefix/networking/vpcs/test-provider-firewall/tgwId"
     );
     expect(awsFirewall.tgwRouteTableSsm.name).toEqual(
-      "/ssm/prefix/networking/globalprefix/vpcs/test-provider-firewall/tgwRouteId"
+      "/ssm/prefix/networking/vpcs/test-provider-firewall/tgwRouteId"
     );
 
-    const prefix = "/ssm/prefix/networking/globalprefix";
+    const prefix = "/ssm/prefix/networking";
     for (const parameterName of [
       `${prefix}/vpcs/test-provider-firewall/vpcId`,
       `${prefix}/vpcs/test-provider-firewall/vpcCidr`,

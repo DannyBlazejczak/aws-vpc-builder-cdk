@@ -109,13 +109,13 @@ test("Route53ResolverBase", () => {
     );
     // We expect SSM named exports within our construct are prepared with Transit Route Table, and Association.
     expect(resolverEndpoints.tgwAttachmentSsm.name).toEqual(
-      "/ssm/prefix/networking/globalprefix/vpcs/test-provider-endpoint-route53-resolver/tgwId"
+      "/ssm/prefix/networking/vpcs/test-provider-endpoint-route53-resolver/tgwId"
     );
     expect(resolverEndpoints.tgwRouteTableSsm.name).toEqual(
-      "/ssm/prefix/networking/globalprefix/vpcs/test-provider-endpoint-route53-resolver/tgwRouteId"
+      "/ssm/prefix/networking/vpcs/test-provider-endpoint-route53-resolver/tgwRouteId"
     );
 
-    const prefix = "/ssm/prefix/networking/globalprefix";
+    const prefix = "/ssm/prefix/networking";
     for (const parameterName of [
       `${prefix}/vpcs/test-provider-endpoint-route53-resolver/vpcId`,
       `${prefix}/vpcs/test-provider-endpoint-route53-resolver/vpcCidr`,

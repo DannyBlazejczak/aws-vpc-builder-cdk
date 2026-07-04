@@ -50,6 +50,7 @@ import {
   TransitGatewayPeerStack
 } from "./transit-gateway-peer-stack";
 import * as cdk from "aws-cdk-lib";
+import { buildCloudFormationStackName } from "./stack-name";
 
 
 export type workloadStackProps = IVpcWorkloadProps;
@@ -76,6 +77,10 @@ export class StackMapper {
     this.c = c;
   }
 
+  cfnStackName(stackName: string): string {
+    return buildCloudFormationStackName(this.c.global.stackNamePrefix, stackName);
+  }
+
   async workloadStacks(
     style: IBuilderVpcStyle,
     stackName: string,
@@ -86,8 +91,7 @@ export class StackMapper {
       style == "workloadPublic" ||
       style == "workloadStandalone"
     ) {
-      const cfnStackName =
-        `${this.c.global.stackNamePrefix}-${stackName}`.toLowerCase();
+      const cfnStackName = this.cfnStackName(stackName);
       let stackClass;
       if (style == "workloadPublic") {
         stackClass = new VpcWorkloadPublicStack(this.app, cfnStackName, props);
@@ -121,8 +125,7 @@ export class StackMapper {
     props: IVpnToTransitGatewayProps
   ) {
     if (style === "transitGatewayAttached") {
-      const cfnStackName =
-        `${this.c.global.stackNamePrefix}-${stackName}`.toLowerCase();
+      const cfnStackName = this.cfnStackName(stackName);
       const stackClass = new VpnToTransitGatewayStack(
         this.app,
         cfnStackName,
@@ -143,8 +146,7 @@ export class StackMapper {
       stackName: string,
       props: directConnectGatewayProps
   ) {
-      const cfnStackName =
-          `${this.c.global.stackNamePrefix}-${stackName}`.toLowerCase();
+      const cfnStackName = this.cfnStackName(stackName);
       const stackClass = new DirectConnectGatewayStack(
           this.app,
           cfnStackName,
@@ -162,8 +164,7 @@ export class StackMapper {
       stackName: string,
       props: transitGatewayPeerProps
   ) {
-    const cfnStackName =
-        `${this.c.global.stackNamePrefix}-${stackName}`.toLowerCase();
+    const cfnStackName = this.cfnStackName(stackName);
     const stackClass = new TransitGatewayPeerStack(
         this.app,
         cfnStackName,
@@ -183,8 +184,7 @@ export class StackMapper {
     props: firewallStackProps
   ) {
     if (style == "awsNetworkFirewall") {
-      const cfnStackName =
-        `${this.c.global.stackNamePrefix}-${stackName}`.toLowerCase();
+      const cfnStackName = this.cfnStackName(stackName);
       const stackClass = new VpcAwsNetworkFirewallStack(
         this.app,
         cfnStackName,
@@ -209,8 +209,7 @@ export class StackMapper {
     props: endpointStackProps
   ) {
     if (style == "serviceInterfaceEndpoint") {
-      const cfnStackName =
-        `${this.c.global.stackNamePrefix}-${stackName}`.toLowerCase();
+      const cfnStackName = this.cfnStackName(stackName);
       const stackClass = new VpcInterfaceEndpointsStack(
         this.app,
         cfnStackName,
@@ -223,8 +222,7 @@ export class StackMapper {
       this.tagStack(stackClass);
       return stackClass;
     } else if (style == "route53ResolverEndpoint") {
-      const cfnStackName =
-        `${this.c.global.stackNamePrefix}-${stackName}`.toLowerCase();
+      const cfnStackName = this.cfnStackName(stackName);
       const stackClass = new VpcRoute53ResolverEndpointsStack(
         this.app,
         cfnStackName,
@@ -249,8 +247,7 @@ export class StackMapper {
     props: internetStackProps
   ) {
     if (style == "natEgress") {
-      const cfnStackName =
-        `${this.c.global.stackNamePrefix}-${stackName}`.toLowerCase();
+      const cfnStackName = this.cfnStackName(stackName);
       const stackClass = new VpcNatEgressStack(this.app, cfnStackName, props);
       await stackClass.init();
       stackClass.saveTgwRouteInformation();
@@ -271,8 +268,7 @@ export class StackMapper {
     props: transitGatewayStackProps
   ) {
     if (style == "transitGateway") {
-      const cfnStackName =
-        `${this.c.global.stackNamePrefix}-${stackName}`.toLowerCase();
+      const cfnStackName = this.cfnStackName(stackName);
       const stackClass = new TransitGatewayStack(this.app, cfnStackName, props);
       await stackClass.init();
       this.tagStack(stackClass);
@@ -288,8 +284,7 @@ export class StackMapper {
     stackName: string,
     props: IDnsRoute53PrivateHostedZonesProps
   ) {
-    const cfnStackName =
-      `${this.c.global.stackNamePrefix}-${stackName}`.toLowerCase();
+    const cfnStackName = this.cfnStackName(stackName);
     const stackClass = new DnsRoute53PrivateHostedZonesClass(
       this.app,
       cfnStackName,
@@ -303,8 +298,7 @@ export class StackMapper {
     stackName: string,
     props: ITransitGatewayRoutesProps
   ) {
-    const cfnStackName =
-      `${this.c.global.stackNamePrefix}-${stackName}`.toLowerCase();
+    const cfnStackName = this.cfnStackName(stackName);
     const stackClass = new TransitGatewayRoutesStack(
       this.app,
       cfnStackName,
@@ -315,8 +309,7 @@ export class StackMapper {
   }
 
   cdkExportPersistStack(stackName: string, props: ICdkExportPersistenceProps) {
-    const cfnStackName =
-      `${this.c.global.stackNamePrefix}-${stackName}`.toLowerCase();
+    const cfnStackName = this.cfnStackName(stackName);
     const stackClass = new CdkExportPersistenceStack(
       this.app,
       cfnStackName,

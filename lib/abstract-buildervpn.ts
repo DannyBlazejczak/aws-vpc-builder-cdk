@@ -81,7 +81,7 @@ export abstract class BuilderVpn extends cdk.Stack implements IBuilderVpn {
 
   createSsmParameters() {
     const prefix =
-      `${this.props.ssmParameterPrefix}/networking/${this.globalPrefix}/vpns/${this.name}`.toLowerCase();
+      `${this.props.ssmParameterPrefix}/networking/vpns/${this.name}`.toLowerCase();
 
     this.tgwRouteTableSsm = {
       name: `${prefix}/tgwRouteId`,
