@@ -1,0 +1,497 @@
+{
+  "bin/vpc-builder.ts": {
+    "mtime": 1754259962.127948,
+    "ast_hash": "d2a38642fe3bd6b1e9aaa36959bd10b7",
+    "semantic_hash": "d2a38642fe3bd6b1e9aaa36959bd10b7"
+  },
+  "cdk.json": {
+    "mtime": 1753884830.3953614,
+    "ast_hash": "b66fcb51df886c1dfc2964b9144b08cc",
+    "semantic_hash": "b66fcb51df886c1dfc2964b9144b08cc"
+  },
+  "discovery/endpoints-ap-northeast-1.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "705a1ee043daad46c9496f8a04218632",
+    "semantic_hash": "705a1ee043daad46c9496f8a04218632"
+  },
+  "discovery/endpoints-ap-northeast-2.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "abbbefc9df978a105883d86f4af0c5b7",
+    "semantic_hash": "abbbefc9df978a105883d86f4af0c5b7"
+  },
+  "discovery/endpoints-ap-northeast-3.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "efc4fd532eeca9a0a5e40a7f1b953cf6",
+    "semantic_hash": "efc4fd532eeca9a0a5e40a7f1b953cf6"
+  },
+  "discovery/endpoints-ap-south-1.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "39e4c65e51f99593d3f924b385753bad",
+    "semantic_hash": "39e4c65e51f99593d3f924b385753bad"
+  },
+  "discovery/endpoints-ap-southeast-1.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "f88038c21859257242f14b7c92c62941",
+    "semantic_hash": "f88038c21859257242f14b7c92c62941"
+  },
+  "discovery/endpoints-ap-southeast-2.json": {
+    "mtime": 1715122170.931994,
+    "ast_hash": "434d3d7a27c4bfd646448157d3a95544",
+    "semantic_hash": "434d3d7a27c4bfd646448157d3a95544"
+  },
+  "discovery/endpoints-ca-central-1.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "b71b064fd0951d2fcc03866acc1dccb5",
+    "semantic_hash": "b71b064fd0951d2fcc03866acc1dccb5"
+  },
+  "discovery/endpoints-eu-central-1.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "6601e2b4f5b8bdb986c1f884e5b79fbc",
+    "semantic_hash": "6601e2b4f5b8bdb986c1f884e5b79fbc"
+  },
+  "discovery/endpoints-eu-north-1.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "b4f80be25049807940428b431f50ccd4",
+    "semantic_hash": "b4f80be25049807940428b431f50ccd4"
+  },
+  "discovery/endpoints-eu-west-1.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "1bb58e43a36f2643972afb265eb13ed7",
+    "semantic_hash": "1bb58e43a36f2643972afb265eb13ed7"
+  },
+  "discovery/endpoints-eu-west-2.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "bf5bdc44d40af92be8d485f5764cde1c",
+    "semantic_hash": "bf5bdc44d40af92be8d485f5764cde1c"
+  },
+  "discovery/endpoints-eu-west-3.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "87dade5d88e4a283ceb7678e8b07dc7a",
+    "semantic_hash": "87dade5d88e4a283ceb7678e8b07dc7a"
+  },
+  "discovery/endpoints-sa-east-1.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "9a7265f69acdc6de05b204e6c2aec0ce",
+    "semantic_hash": "9a7265f69acdc6de05b204e6c2aec0ce"
+  },
+  "discovery/endpoints-us-east-1.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "f2755d2cf0bb6d0884fca02e2fd87d1f",
+    "semantic_hash": "f2755d2cf0bb6d0884fca02e2fd87d1f"
+  },
+  "discovery/endpoints-us-east-2.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "3f8ac9ae340b651d682d572658746053",
+    "semantic_hash": "3f8ac9ae340b651d682d572658746053"
+  },
+  "discovery/endpoints-us-west-1.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "86a0b070b9f32e82e150b91a0d9fa674",
+    "semantic_hash": "86a0b070b9f32e82e150b91a0d9fa674"
+  },
+  "discovery/endpoints-us-west-2.json": {
+    "mtime": 1709762150.0,
+    "ast_hash": "b90ace72b8fc79a73c7410911b7200bd",
+    "semantic_hash": "b90ace72b8fc79a73c7410911b7200bd"
+  },
+  "jest.config.js": {
+    "mtime": 1709762150.0,
+    "ast_hash": "c4a8f6515d342f992143f4f8968d58ad",
+    "semantic_hash": "c4a8f6515d342f992143f4f8968d58ad"
+  },
+  "lambda/findVpnTransitGatewayAttachId/index.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "d2b8c02665fc4bfd03dd76386a05100c",
+    "semantic_hash": "d2b8c02665fc4bfd03dd76386a05100c"
+  },
+  "lambda/parseAwsFirewallEndpoints/index.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "5e4ea2dd0e515c1543db5ce7eaa8b898",
+    "semantic_hash": "5e4ea2dd0e515c1543db5ce7eaa8b898"
+  },
+  "lambda/transitGatewayRemoveStaticRoute/index.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "e4a64dafb973148a8c6071c5a3c12954",
+    "semantic_hash": "e4a64dafb973148a8c6071c5a3c12954"
+  },
+  "lib/abstract-builderdxgw.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "42a6a86204b571b9dfd6dec5d1082a77",
+    "semantic_hash": "42a6a86204b571b9dfd6dec5d1082a77"
+  },
+  "lib/abstract-buildertgwpeer.ts": {
+    "mtime": 1715554568.5775065,
+    "ast_hash": "6d130cd3794bff155c2988c9f8401359",
+    "semantic_hash": "6d130cd3794bff155c2988c9f8401359"
+  },
+  "lib/abstract-buildervpc.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "611deca3e825409b021caec39699a198",
+    "semantic_hash": "611deca3e825409b021caec39699a198"
+  },
+  "lib/abstract-buildervpn.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "bd84283b9d0933deb5b6a9ae6cbc55e5",
+    "semantic_hash": "bd84283b9d0933deb5b6a9ae6cbc55e5"
+  },
+  "lib/abstract-transitgateway.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "afd384f86b2228783582fa3ee904e967",
+    "semantic_hash": "afd384f86b2228783582fa3ee904e967"
+  },
+  "lib/cdk-export-presistence-stack.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "a3cb72dce62e79e584c0cc440cf41163",
+    "semantic_hash": "a3cb72dce62e79e584c0cc440cf41163"
+  },
+  "lib/config/config-schema.json": {
+    "mtime": 1782862075.7218764,
+    "ast_hash": "295a64a1d435bc64e91087339bcfbde8",
+    "semantic_hash": "295a64a1d435bc64e91087339bcfbde8"
+  },
+  "lib/config/config-types.ts": {
+    "mtime": 1782862064.9075406,
+    "ast_hash": "fff809761ba6aa31404bda59bfaab34f",
+    "semantic_hash": "fff809761ba6aa31404bda59bfaab34f"
+  },
+  "lib/config/parser.ts": {
+    "mtime": 1782988109.3579733,
+    "ast_hash": "c6aec387150682f8b3c51067fada6782",
+    "semantic_hash": "c6aec387150682f8b3c51067fada6782"
+  },
+  "lib/direct-connect-gateway-stack.ts": {
+    "mtime": 1715671685.2839692,
+    "ast_hash": "6ebbe64742892c3d63fdb465b75c4af7",
+    "semantic_hash": "6ebbe64742892c3d63fdb465b75c4af7"
+  },
+  "lib/dns-route53-private-hosted-zones-stack.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "358936a4bb822abf6841d6090efe3c84",
+    "semantic_hash": "358936a4bb822abf6841d6090efe3c84"
+  },
+  "lib/stack-builder.ts": {
+    "mtime": 1782862530.7781956,
+    "ast_hash": "5b0fb6e79126f5a9fc2c73388af9a0c1",
+    "semantic_hash": "5b0fb6e79126f5a9fc2c73388af9a0c1"
+  },
+  "lib/stack-mapper.ts": {
+    "mtime": 1782859838.7451906,
+    "ast_hash": "fb9a2f694b32919378d43f5a96d6d20f",
+    "semantic_hash": "fb9a2f694b32919378d43f5a96d6d20f"
+  },
+  "lib/transit-gateway-peer-stack.ts": {
+    "mtime": 1715554568.5827963,
+    "ast_hash": "bff2e7fb543f1060835a7d501cbd9e8e",
+    "semantic_hash": "bff2e7fb543f1060835a7d501cbd9e8e"
+  },
+  "lib/transit-gateway-routes-stack.ts": {
+    "mtime": 1753882036.8283134,
+    "ast_hash": "d580319f104b98a91bdf6bdce14150e2",
+    "semantic_hash": "d580319f104b98a91bdf6bdce14150e2"
+  },
+  "lib/transit-gateway-stack.ts": {
+    "mtime": 1714649792.7988944,
+    "ast_hash": "0a82d1a3fc1b3447aa01786e5586c5b2",
+    "semantic_hash": "0a82d1a3fc1b3447aa01786e5586c5b2"
+  },
+  "lib/types.ts": {
+    "mtime": 1782862065.0952706,
+    "ast_hash": "0b3e19694f308917b14cc87236838b3c",
+    "semantic_hash": "0b3e19694f308917b14cc87236838b3c"
+  },
+  "lib/vpc-aws-network-firewall-stack.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "ca1a60b00bc6a49f37ad796d0a605900",
+    "semantic_hash": "ca1a60b00bc6a49f37ad796d0a605900"
+  },
+  "lib/vpc-interface-endpoints-stack.ts": {
+    "mtime": 1753879503.9638133,
+    "ast_hash": "2d84e68f0ee232cb8c1e1d72d54949d4",
+    "semantic_hash": "2d84e68f0ee232cb8c1e1d72d54949d4"
+  },
+  "lib/vpc-nat-egress-stack.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "5c80fb753065db8e3a29c6be8984e7c6",
+    "semantic_hash": "5c80fb753065db8e3a29c6be8984e7c6"
+  },
+  "lib/vpc-route53-resolver-endpoints-stack.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "6d216a725ef3cf21ad25b19276eab9d1",
+    "semantic_hash": "6d216a725ef3cf21ad25b19276eab9d1"
+  },
+  "lib/vpc-workload-isolated-stack.ts": {
+    "mtime": 1754260054.0281503,
+    "ast_hash": "9316e6c312f5890ed44af7b700352878",
+    "semantic_hash": "9316e6c312f5890ed44af7b700352878"
+  },
+  "lib/vpc-workload-public-stack.ts": {
+    "mtime": 1754260065.3096163,
+    "ast_hash": "bd211ddfa69f41a4c1a0ff01dfe3f0ae",
+    "semantic_hash": "bd211ddfa69f41a4c1a0ff01dfe3f0ae"
+  },
+  "lib/vpc-workload-standalone-stack.ts": {
+    "mtime": 1782862530.94699,
+    "ast_hash": "8b5432107e912a6fd849c503ab81d7b0",
+    "semantic_hash": "8b5432107e912a6fd849c503ab81d7b0"
+  },
+  "lib/vpn-to-transit-gateway-stack.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "d91fbde7fd7ecf879935f741790a573e",
+    "semantic_hash": "d91fbde7fd7ecf879935f741790a573e"
+  },
+  "package.json": {
+    "mtime": 1782830451.0228198,
+    "ast_hash": "57b25bf225ca0dc1575d1c0ef05601d7",
+    "semantic_hash": "57b25bf225ca0dc1575d1c0ef05601d7"
+  },
+  "test/config-parser.test.ts": {
+    "mtime": 1782988119.4796813,
+    "ast_hash": "9e8fc2686446cb072f26190f4296e5dd",
+    "semantic_hash": "9e8fc2686446cb072f26190f4296e5dd"
+  },
+  "test/direct-connect-gateway-stack.test.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "60d506ee7b0e88b38b1251f6fb1a5f54",
+    "semantic_hash": "60d506ee7b0e88b38b1251f6fb1a5f54"
+  },
+  "test/dns-route53-private-hosted-zones-stack.test.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "1ded0fbf15204803dcf9ef0cc6003196",
+    "semantic_hash": "1ded0fbf15204803dcf9ef0cc6003196"
+  },
+  "test/stack-builder-helper.ts": {
+    "mtime": 1715554568.5888402,
+    "ast_hash": "abc08d5b3809a00acd44de6b6c6f0650",
+    "semantic_hash": "abc08d5b3809a00acd44de6b6c6f0650"
+  },
+  "test/transit-gateway-peer-stack.test.ts": {
+    "mtime": 1715554568.5891924,
+    "ast_hash": "4f3b71a1ca932b0c8907fbcd24309a20",
+    "semantic_hash": "4f3b71a1ca932b0c8907fbcd24309a20"
+  },
+  "test/transit-gateway-routes-stack-subnet-routes.test.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "57a9c7a3bec53a82a361cb72afc11665",
+    "semantic_hash": "57a9c7a3bec53a82a361cb72afc11665"
+  },
+  "test/transit-gateway-routes-stack-tgw-routes.test.ts": {
+    "mtime": 1715554568.5897546,
+    "ast_hash": "f63abd64e8d8284e7e0757b5c134e6c0",
+    "semantic_hash": "f63abd64e8d8284e7e0757b5c134e6c0"
+  },
+  "test/transit-gateway-stack.test.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "f989d5167e725515e2e51352d7c669b1",
+    "semantic_hash": "f989d5167e725515e2e51352d7c669b1"
+  },
+  "test/vpc-aws-network-firewall-stack.test.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "c4c5b3f02a528c9f831485ff7ff15432",
+    "semantic_hash": "c4c5b3f02a528c9f831485ff7ff15432"
+  },
+  "test/vpc-interface-endpoints-stack.test.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "0ab640571c440c8626f0f7d16e8f5b66",
+    "semantic_hash": "0ab640571c440c8626f0f7d16e8f5b66"
+  },
+  "test/vpc-nat-egress-stack.test.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "e7559350931188ff567a8f2991cedeeb",
+    "semantic_hash": "e7559350931188ff567a8f2991cedeeb"
+  },
+  "test/vpc-route53-resolver-endpoints-stack.test.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "eabbdcaffe36edf0bf0d1156d38d5bd8",
+    "semantic_hash": "eabbdcaffe36edf0bf0d1156d38d5bd8"
+  },
+  "test/vpc-workload-isolated-stack.test.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "dfda7369353da5f398ccc440ba4949fa",
+    "semantic_hash": "dfda7369353da5f398ccc440ba4949fa"
+  },
+  "test/vpc-workload-public-stack.test.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "9c443e854e31480cac5594213948d3c5",
+    "semantic_hash": "9c443e854e31480cac5594213948d3c5"
+  },
+  "test/vpc-workload-standalone-stack.test.ts": {
+    "mtime": 1782988125.2211764,
+    "ast_hash": "074876bdec6647e8fde4e6cda5c3b368",
+    "semantic_hash": "074876bdec6647e8fde4e6cda5c3b368"
+  },
+  "test/vpn-to-transit-gateway-stack.test.ts": {
+    "mtime": 1709762150.0,
+    "ast_hash": "766c3286ccc8cf7a739bdf13d60398d7",
+    "semantic_hash": "766c3286ccc8cf7a739bdf13d60398d7"
+  },
+  "tools/discoverEndpoints/index.ts": {
+    "mtime": 1714689356.5765142,
+    "ast_hash": "61df6a78db1fe6bfde156c6c1e0bad48",
+    "semantic_hash": "61df6a78db1fe6bfde156c6c1e0bad48"
+  },
+  "tsconfig.json": {
+    "mtime": 1782988131.1639767,
+    "ast_hash": "f5f332d6b59abfbaff16a3819853d212",
+    "semantic_hash": "f5f332d6b59abfbaff16a3819853d212"
+  },
+  ".github/ISSUE_TEMPLATE/bug_report.md": {
+    "mtime": 1709762150.0,
+    "ast_hash": "646faaff33a3cda957046bff88b83dcc",
+    "semantic_hash": "646faaff33a3cda957046bff88b83dcc"
+  },
+  ".github/ISSUE_TEMPLATE/feature_request.md": {
+    "mtime": 1709762150.0,
+    "ast_hash": "70b7e37251f1bc335eac630242214538",
+    "semantic_hash": "70b7e37251f1bc335eac630242214538"
+  },
+  ".github/workflows/node.js.yml": {
+    "mtime": 1709762150.0,
+    "ast_hash": "4e4ba5308551b8fee7b5a7e06d1d2dee",
+    "semantic_hash": "4e4ba5308551b8fee7b5a7e06d1d2dee"
+  },
+  "CODE_OF_CONDUCT.md": {
+    "mtime": 1709762150.0,
+    "ast_hash": "26f76e074423384a52a9e6f81dc2ed7a",
+    "semantic_hash": "26f76e074423384a52a9e6f81dc2ed7a"
+  },
+  "CONTRIBUTING.md": {
+    "mtime": 1709762150.0,
+    "ast_hash": "89a0c2fe235c1d0488cb9cc4a4fba548",
+    "semantic_hash": "89a0c2fe235c1d0488cb9cc4a4fba548"
+  },
+  "README.md": {
+    "mtime": 1709762150.0,
+    "ast_hash": "9a78f83aa50d9aaabfb3cafa142d6e43",
+    "semantic_hash": "9a78f83aa50d9aaabfb3cafa142d6e43"
+  },
+  "config/README.md": {
+    "mtime": 1709762150.0,
+    "ast_hash": "29b8fc2dab3693152eb0dc78bf0ddd31",
+    "semantic_hash": "29b8fc2dab3693152eb0dc78bf0ddd31"
+  },
+  "config/config-walkthrough.yaml": {
+    "mtime": 1715554568.576799,
+    "ast_hash": "794c172e7262c6846f91711113abe0bd",
+    "semantic_hash": "794c172e7262c6846f91711113abe0bd"
+  },
+  "config/sample-central-egress-inspected.vpcBuilder.yaml": {
+    "mtime": 1709762150.0,
+    "ast_hash": "85747c44f9ee31893baaf076837d803e",
+    "semantic_hash": "85747c44f9ee31893baaf076837d803e"
+  },
+  "config/sample-central-egress.md": {
+    "mtime": 1709762150.0,
+    "ast_hash": "69987086673d982cb49cfbea69c6084f",
+    "semantic_hash": "69987086673d982cb49cfbea69c6084f"
+  },
+  "config/sample-central-egress.vpcBuilder.yaml": {
+    "mtime": 1709762150.0,
+    "ast_hash": "125d946f240e2776075b75237d3c52c2",
+    "semantic_hash": "125d946f240e2776075b75237d3c52c2"
+  },
+  "config/sample-central-ingress-inspected.vpcBuilder.yaml": {
+    "mtime": 1709762150.0,
+    "ast_hash": "faecbd4de1e1c39506f31a6d6c10ae82",
+    "semantic_hash": "faecbd4de1e1c39506f31a6d6c10ae82"
+  },
+  "config/sample-central-ingress.md": {
+    "mtime": 1709762150.0,
+    "ast_hash": "d35134d4e2894b6dfa78f71425d829de",
+    "semantic_hash": "d35134d4e2894b6dfa78f71425d829de"
+  },
+  "config/sample-central-ingress.vpcBuilder.yaml": {
+    "mtime": 1709762150.0,
+    "ast_hash": "7d56debea097175fb5e23ed57d94544f",
+    "semantic_hash": "7d56debea097175fb5e23ed57d94544f"
+  },
+  "config/sample-complex-endpoints-us-east-1.txt": {
+    "mtime": 1709762150.0,
+    "ast_hash": "92ba30fe32617933ddc0281831da3c51",
+    "semantic_hash": "92ba30fe32617933ddc0281831da3c51"
+  },
+  "config/sample-complex.md": {
+    "mtime": 1709762150.0,
+    "ast_hash": "b9b2a7f12674f09889e47be09c545fd8",
+    "semantic_hash": "b9b2a7f12674f09889e47be09c545fd8"
+  },
+  "config/sample-complex.vpcBuilder.yaml": {
+    "mtime": 1709762150.0,
+    "ast_hash": "8d514bcc246951bf56e2dec34e139ab3",
+    "semantic_hash": "8d514bcc246951bf56e2dec34e139ab3"
+  },
+  "config/sample-firewall-blog.vpcBuilder.yaml": {
+    "mtime": 1709762150.0,
+    "ast_hash": "e4dee101529ef6470cb93c6639adbbf7",
+    "semantic_hash": "e4dee101529ef6470cb93c6639adbbf7"
+  },
+  "config/sample-vpc-endpoints-us-east-1.txt": {
+    "mtime": 1709762150.0,
+    "ast_hash": "92ba30fe32617933ddc0281831da3c51",
+    "semantic_hash": "92ba30fe32617933ddc0281831da3c51"
+  },
+  "config/sample-vpc-endpoints.md": {
+    "mtime": 1709762150.0,
+    "ast_hash": "f8bdd185331571d643128964e9cd6f29",
+    "semantic_hash": "f8bdd185331571d643128964e9cd6f29"
+  },
+  "config/sample-vpc-endpoints.vpcBuilder.yaml": {
+    "mtime": 1709762150.0,
+    "ast_hash": "10565f327e4334a815bbf14481a4564d",
+    "semantic_hash": "10565f327e4334a815bbf14481a4564d"
+  },
+  "config/sample-vpn-onprem.md": {
+    "mtime": 1709762150.0,
+    "ast_hash": "bcd05caa01950a1e53825903b8af11e4",
+    "semantic_hash": "bcd05caa01950a1e53825903b8af11e4"
+  },
+  "config/sample-vpn-onprem.vpcBuilder.yaml": {
+    "mtime": 1709762150.0,
+    "ast_hash": "710278d1c38281377e03e63c6d670471",
+    "semantic_hash": "710278d1c38281377e03e63c6d670471"
+  },
+  "config/standalone-endpoints-us-east-1.txt": {
+    "mtime": 1782862113.6007566,
+    "ast_hash": "470c7e1e5d35333ed3718a7f40ae1710",
+    "semantic_hash": "470c7e1e5d35333ed3718a7f40ae1710"
+  },
+  "extras/vpn-gateway-strongswan.yml": {
+    "mtime": 1709762150.0,
+    "ast_hash": "7648cca18f3160a7f6c7bf9c6231b27d",
+    "semantic_hash": "7648cca18f3160a7f6c7bf9c6231b27d"
+  },
+  "images/index-1024x523.png": {
+    "mtime": 1709762150.0,
+    "ast_hash": "d005f8128d60b2a26fdea0cd7815dfc1",
+    "semantic_hash": "d005f8128d60b2a26fdea0cd7815dfc1"
+  },
+  "images/sample-central-egress.png": {
+    "mtime": 1709762150.0,
+    "ast_hash": "7b87598750deef00a2bb0d7afd3abbf2",
+    "semantic_hash": "7b87598750deef00a2bb0d7afd3abbf2"
+  },
+  "images/sample-central-ingress.png": {
+    "mtime": 1709762150.0,
+    "ast_hash": "b2a21fbf6ee9bb9cf54959c9b52bfcf6",
+    "semantic_hash": "b2a21fbf6ee9bb9cf54959c9b52bfcf6"
+  },
+  "images/sample-complex.png": {
+    "mtime": 1709762150.0,
+    "ast_hash": "cf3202a05390b79772580e12c5d10c23",
+    "semantic_hash": "cf3202a05390b79772580e12c5d10c23"
+  },
+  "images/sample-vpc-endpoints.png": {
+    "mtime": 1709762150.0,
+    "ast_hash": "5437d18352c144c8ba5722862dd20ba0",
+    "semantic_hash": "5437d18352c144c8ba5722862dd20ba0"
+  },
+  "images/sample-vpn-onprem.jpg": {
+    "mtime": 1709762150.0,
+    "ast_hash": "b0ed4411d0ec19a20e1ba1663e62f7ed",
+    "semantic_hash": "b0ed4411d0ec19a20e1ba1663e62f7ed"
+  },
+  "images/sample-vpn-onprem.png": {
+    "mtime": 1709762150.0,
+    "ast_hash": "4410501d5bf51f6910b9fb7f57ec9b70",
+    "semantic_hash": "4410501d5bf51f6910b9fb7f57ec9b70"
+  }
+}
