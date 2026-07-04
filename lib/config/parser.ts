@@ -112,6 +112,7 @@ export class ConfigParser {
     // ** VPCs
     this.verifyCidrsVpcs();
     this.verifyVpcsSubnetOptions();
+    this.verifyStandaloneVpcOptions();
     this.verifyVpcProvidersExist();
     this.verifyVpcWithNoTransitHasNoRoutes();
     // Our schema matches!  Lets load it up for further value verification.
@@ -306,6 +307,9 @@ export class ConfigParser {
       const vpcConfigStanza = this.configRaw.vpcs[vpcName];
       for (const subnetName of Object.keys(vpcConfigStanza.subnets)) {
         const subnetStanza = vpcConfigStanza.subnets[subnetName];
+        if (!subnetStanza.subnetType) {
+          subnetStanza.subnetType = "isolated";
+        }
         if (subnetStanza.cidrMask < 16 || subnetStanza.cidrMask > 28) {
           throw new Error(
             `A Subnet cidrMask of ${subnetStanza.cidrMask} was given.  Valid values are between 16 and 28`,
@@ -316,6 +320,73 @@ export class ConfigParser {
           for (sharedWith of subnetStanza.sharedWith) {
             this.verifySubnetSharedWith(sharedWith, subnetName);
           }
+        }
+      }
+    }
+  }
+
+  verifyStandaloneVpcOptions() {
+    for (const vpcName of Object.keys(this.configRaw.vpcs)) {
+      const vpcConfigStanza = this.configRaw.vpcs[vpcName];
+      if (vpcConfigStanza.style != "workloadStandalone") {
+        continue;
+      }
+      if (
+        vpcConfigStanza.providerEndpoints ||
+        vpcConfigStanza.providerInternet
+      ) {
+        throw new Error(
+          `VPC ${vpcName} with style workloadStandalone cannot use providerEndpoints or providerInternet`,
+        );
+      }
+      if (!vpcConfigStanza.natGatewayStrategy) {
+        vpcConfigStanza.natGatewayStrategy = "perAz";
+      }
+      const subnetTypes = Object.values(vpcConfigStanza.subnets).map(
+        (subnetStanza) =>
+          (subnetStanza as { subnetType: string }).subnetType,
+      );
+      if (
+        subnetTypes.includes("privateWithEgress") &&
+        vpcConfigStanza.natGatewayStrategy == "none"
+      ) {
+        throw new Error(
+          `VPC ${vpcName} has privateWithEgress subnets but natGatewayStrategy is none`,
+        );
+      }
+      if (
+        subnetTypes.includes("privateWithEgress") &&
+        !subnetTypes.includes("public")
+      ) {
+        throw new Error(
+          `VPC ${vpcName} has privateWithEgress subnets but no public subnet`,
+        );
+      }
+      if (
+        vpcConfigStanza.interfaceEndpointConfigFile &&
+        !subnetTypes.includes("interfaceEndpoint")
+      ) {
+        throw new Error(
+          `VPC ${vpcName} has interfaceEndpointConfigFile but no interfaceEndpoint subnet`,
+        );
+      }
+      if (
+        subnetTypes.includes("interfaceEndpoint") &&
+        !vpcConfigStanza.interfaceEndpointConfigFile
+      ) {
+        throw new Error(
+          `VPC ${vpcName} has interfaceEndpoint subnet but no interfaceEndpointConfigFile`,
+        );
+      }
+      if (vpcConfigStanza.interfaceEndpointConfigFile) {
+        const interfaceListFile = `${vpcConfigStanza.interfaceEndpointConfigFile}-${this.configRaw.global.region}.txt`;
+        const configDir = this.props.configFilename
+          ? path.dirname(this.props.configFilename)
+          : "config";
+        if (!fs.existsSync(path.join(configDir, interfaceListFile))) {
+          throw new Error(
+            `VPC ${vpcName}: Interface endpoint file ${interfaceListFile} not found in the config directory`,
+          );
         }
       }
     }

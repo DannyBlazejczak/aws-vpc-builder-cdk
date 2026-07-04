@@ -1,6 +1,11 @@
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as cdk from "aws-cdk-lib/core";
-import { IConfigVpnTunnelOptions } from "./config/config-types";
+import { ServiceDetail } from "@aws-sdk/client-ec2";
+import {
+  IConfigVpcNatGatewayStrategy,
+  IConfigVpnTunnelOptions,
+  IConfigVpcSubnetType,
+} from "./config/config-types";
 
 /*
  * Base for our Transit Gateway
@@ -78,7 +83,8 @@ export type IBuilderVpcStyle =
   | "natEgress"
   | "awsNetworkFirewall"
   | "workloadIsolated"
-  | "workloadPublic";
+  | "workloadPublic"
+  | "workloadStandalone";
 export type IBuildVpcProvides =
   | "endpoints"
   | "internet"
@@ -105,6 +111,9 @@ export interface IBuilderVpcProps extends IBuilderBaseProps {
  */
 export interface IVpcWorkloadProps extends IBuilderVpcProps {
   createSubnets: Array<SubnetNamedMasks>;
+  natGatewayStrategy?: IConfigVpcNatGatewayStrategy;
+  interfaceDiscovery?: Array<ServiceDetail>;
+  interfaceList?: Array<string>;
   organizationId?: string;
   organizationMainAccountId?: string;
   legacyRamShare?: boolean
@@ -216,6 +225,7 @@ export interface IBuilderTgwStaticRoutes
 export interface SubnetNamedMasks {
   name: string;
   cidrMask: number;
+  subnetType?: IConfigVpcSubnetType;
   sharedWith?: Array<string | number>;
 }
 

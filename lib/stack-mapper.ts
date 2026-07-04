@@ -24,6 +24,7 @@ import {
 } from "./vpc-aws-network-firewall-stack";
 import { VpcWorkloadIsolatedStack } from "./vpc-workload-isolated-stack";
 import { VpcWorkloadPublicStack } from "./vpc-workload-public-stack";
+import { VpcWorkloadStandaloneStack } from "./vpc-workload-standalone-stack";
 import {
   ITransitGatewayRoutesProps,
   TransitGatewayRoutesStack,
@@ -80,12 +81,22 @@ export class StackMapper {
     stackName: string,
     props: workloadStackProps
   ) {
-    if (style == "workloadIsolated" || style == "workloadPublic") {
+    if (
+      style == "workloadIsolated" ||
+      style == "workloadPublic" ||
+      style == "workloadStandalone"
+    ) {
       const cfnStackName =
         `${this.c.global.stackNamePrefix}-${stackName}`.toLowerCase();
       let stackClass;
       if (style == "workloadPublic") {
         stackClass = new VpcWorkloadPublicStack(this.app, cfnStackName, props);
+      } else if (style == "workloadStandalone") {
+        stackClass = new VpcWorkloadStandaloneStack(
+          this.app,
+          cfnStackName,
+          props
+        );
       } else {
         stackClass = new VpcWorkloadIsolatedStack(
           this.app,

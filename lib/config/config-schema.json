@@ -495,8 +495,14 @@
                     },
                     "type": "array"
                 },
+                "interfaceEndpointConfigFile": {
+                    "type": "string"
+                },
                 "legacyRamShare": {
                     "type": "boolean"
+                },
+                "natGatewayStrategy": {
+                    "$ref": "#/definitions/IConfigVpcNatGatewayStrategy"
                 },
                 "providerEndpoints": {
                     "type": "string"
@@ -527,10 +533,19 @@
             },
             "type": "object"
         },
+        "IConfigVpcNatGatewayStrategy": {
+            "enum": [
+                "perAz",
+                "perVpc",
+                "none"
+            ],
+            "type": "string"
+        },
         "IConfigVpcStyles": {
             "enum": [
                 "workloadIsolated",
-                "workloadPublic"
+                "workloadPublic",
+                "workloadStandalone"
             ],
             "type": "string"
         },
@@ -548,12 +563,24 @@
                         ]
                     },
                     "type": "array"
+                },
+                "subnetType": {
+                    "$ref": "#/definitions/IConfigVpcSubnetType"
                 }
             },
             "required": [
                 "cidrMask"
             ],
             "type": "object"
+        },
+        "IConfigVpcSubnetType": {
+            "enum": [
+                "public",
+                "privateWithEgress",
+                "isolated",
+                "interfaceEndpoint"
+            ],
+            "type": "string"
         },
         "IConfigVpcs": {
             "additionalProperties": {
@@ -656,4 +683,3 @@
     ],
     "type": "object"
 }
-

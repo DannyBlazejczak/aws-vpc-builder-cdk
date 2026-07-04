@@ -37,6 +37,64 @@ test("MinimumSucceeds", () => {
   expect(() => config.parse()).not.toThrow();
 });
 
+test("WorkloadStandaloneParserDefaultsSubnetType", () => {
+  const configContents = minimumConfig();
+  configContents.vpcs["dev"].style = "workloadStandalone";
+  const config = new ConfigParser({ configContents: configContents });
+  expect(() => config.parse()).not.toThrow();
+  expect(config.config.vpcs["dev"].subnets["test"].subnetType).toEqual(
+    "isolated"
+  );
+});
+
+test("WorkloadStandaloneCannotUseProviders", () => {
+  const configContents = minimumConfig();
+  configContents.vpcs["dev"].style = "workloadStandalone";
+  configContents.vpcs["dev"].providerInternet = "testing";
+  const config = new ConfigParser({ configContents: configContents });
+  expect(() => config.parse()).toThrow(
+    "VPC dev with style workloadStandalone cannot use providerEndpoints or providerInternet"
+  );
+});
+
+test("WorkloadStandalonePrivateWithEgressRequiresNatAndPublicSubnet", () => {
+  const configContents = minimumConfig();
+  configContents.vpcs["dev"].style = "workloadStandalone";
+  configContents.vpcs["dev"].natGatewayStrategy = "none";
+  configContents.vpcs["dev"].subnets["test"].subnetType = "privateWithEgress";
+  let config = new ConfigParser({ configContents: configContents });
+  expect(() => config.parse()).toThrow(
+    "VPC dev has privateWithEgress subnets but natGatewayStrategy is none"
+  );
+
+  configContents.vpcs["dev"].natGatewayStrategy = "perAz";
+  config = new ConfigParser({ configContents: configContents });
+  expect(() => config.parse()).toThrow(
+    "VPC dev has privateWithEgress subnets but no public subnet"
+  );
+});
+
+test("WorkloadStandaloneInterfaceEndpointConfigRequiresEndpointSubnet", () => {
+  const configContents = minimumConfig();
+  configContents.vpcs["dev"].style = "workloadStandalone";
+  configContents.vpcs["dev"].interfaceEndpointConfigFile =
+    "standalone-endpoints";
+  const config = new ConfigParser({ configContents: configContents });
+  expect(() => config.parse()).toThrow(
+    "VPC dev has interfaceEndpointConfigFile but no interfaceEndpoint subnet"
+  );
+});
+
+test("WorkloadStandaloneInterfaceEndpointSubnetRequiresConfig", () => {
+  const configContents = minimumConfig();
+  configContents.vpcs["dev"].style = "workloadStandalone";
+  configContents.vpcs["dev"].subnets["test"].subnetType = "interfaceEndpoint";
+  const config = new ConfigParser({ configContents: configContents });
+  expect(() => config.parse()).toThrow(
+    "VPC dev has interfaceEndpoint subnet but no interfaceEndpointConfigFile"
+  );
+});
+
 test("InvalidCidr", () => {
   const configContents = minimumConfig();
   configContents.vpcs["dev"].vpcCidr = "10.1.2.0";

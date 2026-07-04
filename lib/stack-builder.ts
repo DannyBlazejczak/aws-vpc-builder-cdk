@@ -104,7 +104,7 @@ export class StackBuilderClass {
     this.stackMapper = new StackMapper({});
   }
 
-  configure(configFilename?: string, configContents?: string, permissionsBoundary?: string) {
+  configure(configFilename?: string, configContents?: IConfig, permissionsBoundary?: string) {
     this.configParser = new ConfigParser({
       configFilename: configFilename,
       configContents: configContents,
@@ -224,6 +224,7 @@ export class StackBuilderClass {
         subnets.push({
           name: subnetName,
           cidrMask: configStanza.subnets[subnetName].cidrMask,
+          subnetType: configStanza.subnets[subnetName].subnetType,
           sharedWith: configStanza.subnets[subnetName].sharedWith,
         });
       }
@@ -240,8 +241,16 @@ export class StackBuilderClass {
         ssmParameterPrefix: this.c.global.ssmPrefix,
         vpcCidr: configStanza.vpcCidr,
         createSubnets: subnets,
+        natGatewayStrategy: configStanza.natGatewayStrategy,
         permissionsBoundary: this.permissionsBoundary,
       };
+      if (configStanza.interfaceEndpointConfigFile) {
+        this.readEndpointDiscovery();
+        stackProps.interfaceDiscovery = this.interfaceDiscovery;
+        stackProps.interfaceList = this.readInterfaceEndpointConfigFile(
+          configStanza.interfaceEndpointConfigFile
+        );
+      }
 
       const transitGatewayName = this.workloadHasTransit(workloadVpcName);
       if (transitGatewayName) {
@@ -281,8 +290,16 @@ export class StackBuilderClass {
     const endpointFilePrefix = configStanza.endpointConfigFile
       ? configStanza.endpointConfigFile
       : "endpointlist";
+    this.interfaceList.push(
+      ...this.readInterfaceEndpointConfigFile(endpointFilePrefix)
+    );
+  }
+
+  readInterfaceEndpointConfigFile(endpointFilePrefix: string): Array<string> {
     // DBLA: I want to read this file from the workdir, not from the local source dir
-    const configDir = this.configParser.props.configFilename ? path.dirname(this.configParser.props.configFilename) : "config";
+    const configDir = this.configParser.props.configFilename
+      ? path.dirname(this.configParser.props.configFilename)
+      : "config";
     const interfaceListRaw: Array<string> = fs
         .readFileSync(
             path.join(
@@ -296,13 +313,17 @@ export class StackBuilderClass {
         .split("\n").filter(endpoint => endpoint.length > 0)
     // We will substitute any region specific strings in our interface list with the one declared in global
     // This allows for re-use across regions and aligns with a 'do what I mean' approach
+    const interfaceList: Array<string> = [];
     for(const regionInfo of ri.RegionInfo.regions) {
       interfaceListRaw.forEach((interfaceName) => {
         if(interfaceName.includes(regionInfo.name)) {
-          this.interfaceList.push(interfaceName.replace(regionInfo.name, this.c.global.region))
+          interfaceList.push(
+            interfaceName.replace(regionInfo.name, this.c.global.region)
+          )
         }
       })
     }
+    return interfaceList;
   }
 
   async buildTransitGatewayStacks() {
@@ -669,56 +690,58 @@ export class StackBuilderClass {
   // Association with a route table or configuration of a provider means we must transit gateway connect
   workloadHasTransit(workloadName: string): string {
     // First pass we will look at associations in the route tables.  We'll return our first match
-    for (const transitGatewayName of Object.keys(this.c.transitGateways!)) {
-      const configStanza = this.c?.transitGateways![transitGatewayName];
-      if (
-        configStanza.staticRoutes?.find(
-          (routes) => routes.vpcName == workloadName
-        )
-      ) {
-        return transitGatewayName;
-      }
-      if (
-        configStanza.staticRoutes?.find(
-          (routes) => routes.routesTo == workloadName
-        )
-      ) {
-        return transitGatewayName;
-      }
-      if (
-        configStanza.dynamicRoutes?.find(
-          (routes) => routes.vpcName == workloadName
-        )
-      ) {
-        return transitGatewayName;
-      }
-      if (
-        configStanza.dynamicRoutes?.find(
-          (routes) => routes.routesTo == workloadName
-        )
-      ) {
-        return transitGatewayName;
-      }
-      if (
-        configStanza.blackholeRoutes?.find(
-          (routes) => routes.vpcName == workloadName
-        )
-      ) {
-        return transitGatewayName;
-      }
-      if (
-        configStanza.defaultRoutes?.find(
-          (routes) => routes.vpcName == workloadName
-        )
-      ) {
-        return transitGatewayName;
-      }
-      if (
-        configStanza.defaultRoutes?.find(
-          (routes) => routes.routesTo == workloadName
-        )
-      ) {
-        return transitGatewayName;
+    if (this.c.transitGateways) {
+      for (const transitGatewayName of Object.keys(this.c.transitGateways)) {
+        const configStanza = this.c.transitGateways[transitGatewayName];
+        if (
+          configStanza.staticRoutes?.find(
+            (routes) => routes.vpcName == workloadName
+          )
+        ) {
+          return transitGatewayName;
+        }
+        if (
+          configStanza.staticRoutes?.find(
+            (routes) => routes.routesTo == workloadName
+          )
+        ) {
+          return transitGatewayName;
+        }
+        if (
+          configStanza.dynamicRoutes?.find(
+            (routes) => routes.vpcName == workloadName
+          )
+        ) {
+          return transitGatewayName;
+        }
+        if (
+          configStanza.dynamicRoutes?.find(
+            (routes) => routes.routesTo == workloadName
+          )
+        ) {
+          return transitGatewayName;
+        }
+        if (
+          configStanza.blackholeRoutes?.find(
+            (routes) => routes.vpcName == workloadName
+          )
+        ) {
+          return transitGatewayName;
+        }
+        if (
+          configStanza.defaultRoutes?.find(
+            (routes) => routes.vpcName == workloadName
+          )
+        ) {
+          return transitGatewayName;
+        }
+        if (
+          configStanza.defaultRoutes?.find(
+            (routes) => routes.routesTo == workloadName
+          )
+        ) {
+          return transitGatewayName;
+        }
       }
     }
     // Second pass we will look for the use of a provider.  Return our providers TransitGateway
