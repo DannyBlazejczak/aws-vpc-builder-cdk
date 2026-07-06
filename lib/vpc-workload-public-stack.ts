@@ -8,6 +8,7 @@ import {
 } from "./types";
 import { BuilderVpc } from "./abstract-buildervpc";
 import * as ram from "aws-cdk-lib/aws-ram";
+import { ramResourceShareName } from "./name-utils";
 
 // export interface IVpcWorkloadPublicProps extends IBuilderVpcProps {
 //     createSubnets: Array<SubnetNamedMasks>
@@ -52,7 +53,7 @@ export class VpcWorkloadPublicStack extends BuilderVpc {
       if (createSubnet.sharedWith) {
         new ram.CfnResourceShare(this, `RamShare${createSubnet.name}`, {
           allowExternalPrincipals: false,
-          name: `Share-${this.name}`,
+          name: ramResourceShareName(this.name, createSubnet.name, "public"),
           permissionArns: [
             "arn:aws:ram::aws:permission/AWSRAMDefaultPermissionSubnet",
           ],

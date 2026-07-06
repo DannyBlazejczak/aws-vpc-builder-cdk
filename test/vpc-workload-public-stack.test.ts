@@ -144,9 +144,9 @@ test("WorkloadIsolatedBaseWithSharedSubnets", () => {
         "arn:aws:organizations::012345678910:ou/o-12345/ou-12345",
       ]),
     });
-    // The name should match 'Share-${vpcName}'
+    // The share name includes the subnet context visible to participant accounts.
     template.hasResourceProperties("AWS::RAM::ResourceShare", {
-      Name: "Share-test-vpc-public-workload",
+      Name: "Share-test-vpc-public-workload-testing-public",
     });
   }
 });

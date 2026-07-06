@@ -1,7 +1,7 @@
 import {
   buildCloudFormationStackName,
   CLOUDFORMATION_STACK_NAME_MAX_LENGTH,
-} from "../lib/stack-name";
+} from "../lib/name-utils";
 
 test("ShortStackNameUnchanged", () => {
   expect(buildCloudFormationStackName("alzb123", "workload")).toEqual(

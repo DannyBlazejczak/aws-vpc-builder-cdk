@@ -2,6 +2,10 @@ import { Template, Match } from "aws-cdk-lib/assertions";
 import { newVpcWorkloadStack } from "./stack-builder-helper";
 import { ITgw } from "../lib/types";
 import * as cdk from "aws-cdk-lib";
+import {
+  ramResourceShareName,
+  RAM_RESOURCE_SHARE_NAME_MAX_LENGTH,
+} from "../lib/name-utils";
 
 test("WorkloadIsolatedBase", () => {
   for (const transitStyle of ["stack", "imported"]) {
@@ -176,9 +180,15 @@ test("WorkloadIsolatedBaseWithSharedSubnets", () => {
         "arn:aws:organizations::012345678910:ou/o-12345/ou-12345",
       ]),
     });
-    // The name should match 'Share-${vpcName}'
+    // The share name includes the subnet context visible to participant accounts.
     template.hasResourceProperties("AWS::RAM::ResourceShare", {
-      Name: "Share-test-vpc-workload",
+      Name: "Share-test-vpc-workload-testing-isolated",
     });
   }
+});
+
+test("RamResourceShareNameIsLimitedWithHash", () => {
+  const name = ramResourceShareName("v".repeat(260), "testing", "isolated");
+  expect(name.length).toBe(RAM_RESOURCE_SHARE_NAME_MAX_LENGTH);
+  expect(name).toMatch(/-[0-9a-f]{4}$/);
 });

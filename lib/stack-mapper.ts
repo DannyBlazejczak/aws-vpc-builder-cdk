@@ -50,7 +50,7 @@ import {
   TransitGatewayPeerStack
 } from "./transit-gateway-peer-stack";
 import * as cdk from "aws-cdk-lib";
-import { buildCloudFormationStackName } from "./stack-name";
+import { buildCloudFormationStackName } from "./name-utils";
 
 
 export type workloadStackProps = IVpcWorkloadProps;

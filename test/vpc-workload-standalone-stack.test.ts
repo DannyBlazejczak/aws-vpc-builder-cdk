@@ -49,6 +49,23 @@ test("WorkloadStandaloneIsolatedOnlyBuildsWithoutInternetNatOrTgw", async () => 
   template.resourceCountIs("AWS::EC2::TransitGatewayRouteTable", 0);
 });
 
+test("WorkloadStandaloneSharedSubnetsIncludeSubnetContextInRamShareName", async () => {
+  const { template } = await buildStandalone(
+    standaloneConfig({
+      subnets: {
+        workload: {
+          cidrMask: 21,
+          sharedWith: [123456789012],
+        },
+      },
+    })
+  );
+
+  template.hasResourceProperties("AWS::RAM::ResourceShare", {
+    Name: "Share-dev-vpc-standalone-workload-workload-isolated",
+  });
+});
+
 test("WorkloadStandalonePublicOnlyUsesIgwWithoutNat", async () => {
   const { template, workloadStack } = await buildStandalone(
     standaloneConfig({
