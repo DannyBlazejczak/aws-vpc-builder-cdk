@@ -48,7 +48,7 @@ export abstract class BuilderDxGw extends cdk.Stack implements IBuilderDxGw {
 
   createSsmParameters() {
     const prefix =
-      `${this.props.ssmParameterPrefix}/networking/${this.globalPrefix}/dxgw/${this.name}`.toLowerCase();
+      `${this.props.ssmParameterPrefix}/networking/dxgw/${this.name}`.toLowerCase();
 
     this.tgwRouteTableSsm = {
       name: `${prefix}/tgwRouteId`,

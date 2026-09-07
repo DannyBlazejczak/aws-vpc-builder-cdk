@@ -48,7 +48,7 @@ export abstract class BuilderTgwPeer extends cdk.Stack implements IBuilderTgwPee
 
   createSsmParameters() {
     const prefix =
-      `${this.props.ssmParameterPrefix}/networking/${this.globalPrefix}/tgwPeer/${this.name}`.toLowerCase();
+      `${this.props.ssmParameterPrefix}/networking/tgwPeer/${this.name}`.toLowerCase();
 
     this.tgwRouteTableSsm = {
       name: `${prefix}/tgwRouteId`,

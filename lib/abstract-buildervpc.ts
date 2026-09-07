@@ -148,7 +148,7 @@ export abstract class BuilderVpc extends cdk.Stack implements IBuilderVpc {
      */
   createSsmParameters() {
     const prefix =
-      `${this.props.ssmParameterPrefix}/networking/${this.globalPrefix}/vpcs/${this.name}`.toLowerCase();
+      `${this.props.ssmParameterPrefix}/networking/vpcs/${this.name}`.toLowerCase();
     this.ssmParameterPaths = {
       vpcName: this.name,
       vpcId: `${prefix}/vpcId`,

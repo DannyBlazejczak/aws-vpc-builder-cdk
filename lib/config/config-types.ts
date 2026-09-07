@@ -164,8 +164,15 @@ export interface IConfigDns {
  ****** vpcs:
  */
 
+export type IConfigVpcSubnetType =
+  | "public"
+  | "privateWithEgress"
+  | "isolated"
+  | "interfaceEndpoint";
+
 export interface IConfigVpcSubnet {
   cidrMask: number;
+  subnetType?: IConfigVpcSubnetType;
   sharedWith?: Array<string | number>;
 }
 
@@ -173,12 +180,18 @@ export interface IConfigVpcNamedSubnets {
   [key: string]: IConfigVpcSubnet;
 }
 
-export type IConfigVpcStyles = "workloadIsolated" | "workloadPublic";
+export type IConfigVpcNatGatewayStrategy = "perAz" | "perVpc" | "none";
+export type IConfigVpcStyles =
+  | "workloadIsolated"
+  | "workloadPublic"
+  | "workloadStandalone";
 export interface IConfigVpc {
   vpcCidr: string;
   availabilityZones?: Array<string>;
   style: IConfigVpcStyles;
   subnets: IConfigVpcNamedSubnets;
+  natGatewayStrategy?: IConfigVpcNatGatewayStrategy;
+  interfaceEndpointConfigFile?: string;
   legacyRamShare?: boolean;
   attachTgw?: boolean;
   providerEndpoints?: string;

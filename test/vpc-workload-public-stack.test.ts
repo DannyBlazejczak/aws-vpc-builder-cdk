@@ -65,13 +65,13 @@ test("WorkloadPublicBase", () => {
 
     // We expect SSM named exports within our construct are prepared with Transit Route Table, and Association.
     expect(workloadPublic.tgwAttachmentSsm.name).toEqual(
-      "/ssm/prefix/networking/globalprefix/vpcs/test-vpc-public-workload/tgwId"
+      "/ssm/prefix/networking/vpcs/test-vpc-public-workload/tgwId"
     );
     expect(workloadPublic.tgwRouteTableSsm.name).toEqual(
-      "/ssm/prefix/networking/globalprefix/vpcs/test-vpc-public-workload/tgwRouteId"
+      "/ssm/prefix/networking/vpcs/test-vpc-public-workload/tgwRouteId"
     );
 
-    const prefix = "/ssm/prefix/networking/globalprefix";
+    const prefix = "/ssm/prefix/networking";
     for (const parameterName of [
       `${prefix}/vpcs/test-vpc-public-workload/vpcId`,
       `${prefix}/vpcs/test-vpc-public-workload/vpcCidr`,
@@ -144,9 +144,9 @@ test("WorkloadIsolatedBaseWithSharedSubnets", () => {
         "arn:aws:organizations::012345678910:ou/o-12345/ou-12345",
       ]),
     });
-    // The name should match 'Share-${vpcName}'
+    // The share name includes the subnet context visible to participant accounts.
     template.hasResourceProperties("AWS::RAM::ResourceShare", {
-      Name: "Share-test-vpc-public-workload",
+      Name: "Share-test-vpc-public-workload-testing-public",
     });
   }
 });

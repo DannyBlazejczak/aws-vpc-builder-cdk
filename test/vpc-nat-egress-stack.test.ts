@@ -53,13 +53,13 @@ test("NatEgressStackBase", () => {
 
     // We expect SSM named exports within our construct are prepared with Transit Route Table, and Association.
     expect(natEgress.tgwAttachmentSsm.name).toEqual(
-      "/ssm/prefix/networking/globalprefix/vpcs/test-provider-internet/tgwId"
+      "/ssm/prefix/networking/vpcs/test-provider-internet/tgwId"
     );
     expect(natEgress.tgwRouteTableSsm.name).toEqual(
-      "/ssm/prefix/networking/globalprefix/vpcs/test-provider-internet/tgwRouteId"
+      "/ssm/prefix/networking/vpcs/test-provider-internet/tgwRouteId"
     );
 
-    const prefix = "/ssm/prefix/networking/globalprefix";
+    const prefix = "/ssm/prefix/networking";
     for (const parameterName of [
       `${prefix}/vpcs/test-provider-internet/vpcId`,
       `${prefix}/vpcs/test-provider-internet/vpcCidr`,

@@ -14,11 +14,11 @@ test("SsmParametersCreated", () => {
 
   // We expect SSM Exports that our stacks above can consume:
   template.hasResourceProperties("AWS::SSM::Parameter", {
-    Name: "/ssm/prefix/networking/globalprefix/dxgw/test-dxgw/tgwRouteId",
+    Name: "/ssm/prefix/networking/dxgw/test-dxgw/tgwRouteId",
     Value: "tgw-rtb-12345",
   });
   template.hasResourceProperties("AWS::SSM::Parameter", {
-    Name: "/ssm/prefix/networking/globalprefix/dxgw/test-dxgw/tgwAttachId",
+    Name: "/ssm/prefix/networking/dxgw/test-dxgw/tgwAttachId",
     Value: "tgw-attach-12345",
   });
 })

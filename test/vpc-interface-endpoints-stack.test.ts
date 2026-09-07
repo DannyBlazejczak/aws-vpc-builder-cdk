@@ -89,13 +89,13 @@ test("InterfaceEndpointsBase", () => {
 
     // We expect SSM named exports within our construct are prepared with Transit Route Table, and Association.
     expect(interfaceEndpoints.tgwAttachmentSsm.name).toEqual(
-      "/ssm/prefix/networking/globalprefix/vpcs/test-provider-endpoint-service-interface/tgwId"
+      "/ssm/prefix/networking/vpcs/test-provider-endpoint-service-interface/tgwId"
     );
     expect(interfaceEndpoints.tgwRouteTableSsm.name).toEqual(
-      "/ssm/prefix/networking/globalprefix/vpcs/test-provider-endpoint-service-interface/tgwRouteId"
+      "/ssm/prefix/networking/vpcs/test-provider-endpoint-service-interface/tgwRouteId"
     );
 
-    const prefix = "/ssm/prefix/networking/globalprefix";
+    const prefix = "/ssm/prefix/networking";
     for (const parameterName of [
       `${prefix}/vpcs/test-provider-endpoint-service-interface/vpcId`,
       `${prefix}/vpcs/test-provider-endpoint-service-interface/vpcCidr`,
